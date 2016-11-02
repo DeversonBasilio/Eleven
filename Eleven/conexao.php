@@ -1,11 +1,8 @@
 <?php
-	$serverName = "DEDÉ-PC\SQLEXPRESS";
+	$serverName = "localhost";
 	$database = "ElevenDB";
-	$uid = "Deverson";
-	$pwd = "123";
-	$connectionInfo = array( "UID"=>$uid,"PWD"=>$pwd,"Database"=>$database,"CharacterSet"=>'UTF-8');
+	$uid = "root";
+	$pwd = "1234";
 	
-	$conn = sqlsrv_connect($serverName, $connectionInfo );
-	ini_set('error_reporting',e_all);
-	ini_set('display_errors',1);	
+	$conn = new mysqli($serverName,$uid,$pwd,$database );
 ?>

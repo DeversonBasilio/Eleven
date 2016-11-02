@@ -1,14 +1,32 @@
 <!DOCTYPE html>
-<html>
-	<?php		
-		require_once('..\conexao.php');
-	?>
+<html>	
 	<head>
 		<meta charset="UTF-8">
 		<title>Eleven</title>
 		<link href="../imports/css/bootstrap.min.css" rel="stylesheet">
 		<script src="../imports/js/jquery-2.2.4.min.js" type="text/javascript"></script>
 		<script src="../imports/js/bootstrap.min.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			$(document).ready(function (){
+				$('.btn-success').click(function(){					
+					if($('#ipt_RazaoSocial').val() == "" || $('#ipt_Cnpj').val() == "" )
+					{ 
+						alert("Há campos que precisam ser preenchidos");
+					}
+					else
+					{							
+						var params = { 'RazaoSocial': $('#ipt_RazaoSocial').val(), 'CNPJ': $('#ipt_Cnpj').val()};
+						$.ajax({
+							type: 'POST',
+							url: "php/Empresas_insert.php",
+							data: params,
+							datatype: "html",
+							success: function(data) { alert(data); }
+						});
+					}
+				});
+			});
+		</script>
 	</head>
 	<body>	
 		<nav class="navbar navbar-default">

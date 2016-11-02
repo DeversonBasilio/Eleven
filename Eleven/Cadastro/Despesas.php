@@ -9,6 +9,27 @@
 		<link href="../imports/css/bootstrap.min.css" rel="stylesheet">
 		<script src="../imports/js/jquery-2.2.4.min.js" type="text/javascript"></script>
 		<script src="../imports/js/bootstrap.min.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			$(document).ready(function (){
+				$('.btn-success').click(function(){					
+					if($('#ipt_Desc').val() == "" || $('#ipt_Percent').val() == "" )
+					{ 
+						alert("Há campos que precisam ser preenchidos");
+					}
+					else
+					{							
+						var params = { 'Descricao': $('#ipt_Desc').val(), 'Percentual': $('#ipt_Percent').val()};
+						$.ajax({
+							type: 'POST',
+							url: "php/Despesas_insert.php",
+							data: params,
+							datatype: "html",
+							success: function(data) { alert(data); }
+						});
+					}
+				});
+			});
+		</script>
 	</head>
 	<body>	
 		<nav class="navbar navbar-default">

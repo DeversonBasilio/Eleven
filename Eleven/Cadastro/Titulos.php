@@ -9,6 +9,36 @@
 		<link href="../imports/css/bootstrap.min.css" rel="stylesheet">
 		<script src="../imports/js/jquery-2.2.4.min.js" type="text/javascript"></script>
 		<script src="../imports/js/bootstrap.min.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			$(document).ready(function (){
+				$('.btn-success').click(function(){					
+					if(	$('#ipt_CODEmpresa').val() == "" || 
+						$('#ipt_Especie').val() == ""  ||
+						$('#ipt_Vencimento').val() == ""  ||
+						$('#ipt_Titulo').val() == ""  ||
+						$('#ipt_Valor').val() == ""  )
+					{ 
+						alert("H? campos que precisam ser preenchidos");
+					}
+					else
+					{							
+						var params = { 	'COD_Empresa': $('#ipt_CODEmpresa').val(),
+										'Especie': $('#ipt_Especie').val(),
+										'Vencimento': $('#ipt_Vencimento').val(),
+										'NTitulo': $('#ipt_Titulo').val(),
+										'Valor': $('#ipt_Valor').val()
+									};
+						$.ajax({
+							type: 'POST',
+							url: "php/Titulos_insert.php",
+							data: params,
+							datatype: "html",
+							success: function(data) { alert(data); }
+						});
+					}
+				});
+			});
+		</script>
 	</head>
 	<body>	
 		<nav class="navbar navbar-default">
@@ -43,12 +73,12 @@
 			<form method="post" name="form">
 				<div class="input-group input-group-lg" style="margin-top:1%;">
 					<span class="input-group-addon" id="sizing-addon1">Empresas</span>
-					<input type="text" class="form-control" name="RazaoSocial"  id="ipt_RazaoSocial" required>
+					<input type="text" class="form-control" name="RazaoSocial"  id="ipt_CODEmpresa" required>
 				</div>
 				<div>
 					<div class="input-group input-group-lg" style="margin-top:1%;">
 						<span class="input-group-addon" id="sizing-addon1">Especie</span>
-						<input type="text" class="form-control" name="Especie"  id="ipt_Cnpj" required>
+						<input type="text" class="form-control" name="Especie"  id="ipt_Especie" required>
 					</div>
 					<div class="input-group input-group-lg" style="margin-top:1%;">
 						<span class="input-group-addon" id="sizing-addon1">Vencimento</span>
@@ -57,12 +87,12 @@
 				</div>
 				<div>
 					<div class="input-group input-group-lg" style="margin-top:1%;">
-						<span class="input-group-addon" id="sizing-addon1">Nº do Titulo</span>
-						<input type="text" class="form-control" name="Especie"  id="ipt_Cnpj" required>
+						<span class="input-group-addon" id="sizing-addon1">N? do Titulo</span>
+						<input type="text" class="form-control" name="Especie"  id="ipt_Titulo" required>
 					</div>
 					<div class="input-group input-group-lg" style="margin-top:1%;">
 						<span class="input-group-addon" id="sizing-addon1">Valor</span>
-						<input type="text" class="form-control" name="Vencimento"  id="ipt_Vencimento" required>
+						<input type="text" class="form-control" name="Vencimento"  id="ipt_Valor" required>
 					</div>
 				</div>
 				<div class="input-group input-group-lg" style="margin-top:1%;">
